@@ -3,7 +3,7 @@ import json
 import openai
 from openai import OpenAI
 
-client= OpenAI(api_key= 'sk-proj-6veP75k5i8ADJ2NMLRoBT3BlbkFJyuZgpZZfcmsPDYjb207C')
+client= OpenAI(api_key= '')
 
 
 
