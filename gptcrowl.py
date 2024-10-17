@@ -15,20 +15,18 @@ from selenium.webdriver.chrome.options import Options
 
 def Stealing(driver, content):
     driver.get('https://chatgpt.com/')
-    try:
-        WebDriverWait(driver,30,0.5).until(EC.presence_of_element_located((By.ID,"prompt-textarea")))
-        textarea= driver.find_element(By.ID ,'prompt-textarea')
-        send_button= driver.find_element(By.XPATH ,'/html/body/div[1]/div/main/div[1]/div[2]/div/div[1]/div/form/div/div[2]/div[2]/div/button')
-        ques= "1.輸出下文詐騙手法類型 ，根據【網路購物詐騙、借款詐騙、親友詐騙、愛情詐騙、工作詐騙、投資詐騙、預付費詐騙、人頭帳戶詐騙、恐嚇詐騙、假客服詐騙、假檢警詐騙、商業電子郵件詐騙、略讀詐騙、釣魚詐騙及駭客詐騙】。2.輸出格式(繁體中文):  此為XXXX詐騙。3.內容:"
-        textarea.send_keys(ques+content)
-        time.sleep(random.randint(4,5))
-        driver.execute_script("arguments[0].click();",send_button)
-        time.sleep(random.randint(4,5))
-        textarea= driver.find_element(By.CSS_SELECTOR ,'div.markdown> p')
-        return textarea.text
-    except:
-        print("Error")
-        return "Error"
+    #try:
+    WebDriverWait(driver,30,0.5).until(EC.presence_of_element_located((By.ID,"prompt-textarea")))
+    textarea= driver.find_element(By.ID ,'prompt-textarea')
+    ques= "1.輸出下文詐騙手法類型 ，根據【網路購物詐騙、借款詐騙、親友詐騙、愛情詐騙、工作詐騙、投資詐騙、預付費詐騙、人頭帳戶詐騙、恐嚇詐騙、假客服詐騙、假檢警詐騙、商業電子郵件詐騙、略讀詐騙、釣魚詐騙及駭客詐騙】。2.輸出格式(繁體中文):  此為XXXX詐騙。3.內容:"
+    textarea.send_keys(ques+content+'\n')
+    time.sleep(random.randint(4,5))
+    time.sleep(random.randint(4,5))
+    textarea= driver.find_element(By.CSS_SELECTOR ,'div.markdown> p')
+    return textarea.text
+    #except:
+        #print("Error")
+        #return "Error"
 
 
 def Send_to_gpt(driver, data):
@@ -49,7 +47,7 @@ def Send_to_gpt(driver, data):
 
 Year= ["106"]
 file_count= 0
-driver= Driver(uc= True, incognito= False, headless= False)
+driver= Driver(uc= True, incognito= True, headless= False)
 
 for year in Year:
     folder_path = 'C:/Users/user/Desktop/士林地方檢察署/'+year
